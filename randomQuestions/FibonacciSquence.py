@@ -6,11 +6,24 @@
 
 
 def Fibonacci(n):
+    # base case
     if n == 1:
         return []
     elif n == 2:
         return [0, 1]
+    # recursive case
     else:
+        # results
         res = Fibonacci(n-1)
+        # add up last two numbers
         res.append(res[-2]+res[-1])
         return res
+
+
+# talk through your code ina high level
+
+# what caused an issue, how did you fix it
+
+# time/space complexity of your solution?
+
+# What are some ways in which we could tweak / change my implementation to improve on its better time / space complexity?
