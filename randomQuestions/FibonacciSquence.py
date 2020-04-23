@@ -32,10 +32,14 @@ def Fibonacci(n):
   # I didn't recognize the question asked to return array first
 
 # 3.time/space complexity of your solution?
-  # Time complexity : O(2^N) This is the slowest way to solve the Fibonacci Sequence because it takes exponential time. The amount of operations needed, for each level of recursion, grows exponentially as the depth approaches N.
+  # Time complexity  O(n): The only uncertain one is the line: res = Fibonacci(n-1). Since it's a recursive call, the total time complexity should be O(1) + O(Fibonacci(n - 1). And we can analyze the O(Fibonacci(n - 1).
+    # O(Fibonacci(n - 1) = O(1) + O(Fibonacci(n - 2), till n == 2. Since there is n - 2 times function call to Fibonacci. It would be O((n - 2) * 1) = O(n).
   # Space complexity : O(N) We need space proportionate to N to account for the max size of the stack, in memory. This stack keeps track of the function calls to fib(N). This has the potential to be bad in cases that there isn't enough physical memory to handle the increasingly growing stack, leading to a StackOverflowError.
 
 # 4.What are some ways in which we could tweak / change my implementation to improve on its better time / space complexity?
+ # Since the input n has an upper limit and the nature of the Fibonacci numbers: the index for each number is certain. We can pre-calculate an array store in disk or memory. Every time get a call just return the sliced array like: RES_ARRAY[:n]
+
+
 # Improve upon the recursive option by using iteration, still solving for all of the sub-problems and returning the answer for N, using already computed Fibonacci values. In using a bottom-up approach, we can iteratively compute and store the values, only returning once we reach the result.
 # If N is less than or equal to 1, return...
 # Otherwise, iterate through N, storing each computed answer in an array along the way.

@@ -13,7 +13,8 @@ def threeNumberSum(arr, target):
 
     # sort input numbers, to keep the increasing order
     arr.sort()
-    # store all numbers to a set (目的是为了去重吗？)
+    # store all numbers to a set (目的是为了去重吗？不是)
+    # The set is used to check whether there is an existing number to avoid O(n) lookup to find target sum.
     num_set = set(arr)
     for i in range(length):
         # assume if its 2sum, so arr[i] plus a temporary target should equal to the target number
@@ -21,7 +22,7 @@ def threeNumberSum(arr, target):
         tmp_target = target - arr[i]
 
         # j is index for the second element of the triplets, which starts from smallest value after index i
-        for j in range(i+1, length):
+        for j in range(i + 1, length):
             # last is the third element of the triplets
             last = tmp_target - arr[j]
             # check the numbers to see if "last" is exist and has to be increasing order
@@ -38,11 +39,12 @@ def threeNumberSum(arr, target):
  # remind me of two sum, so inside two sum adding a for loop to find the third number
 
 # 2.when you were doing the question, what caused an issue, how did you fix it
- # I didn't figure out how to find the third number, it turns out if I sort the numbers first, it would be much easier to find the third numbert
+ # I didn't figure out how to find the third number fast, found it by using the set
 
 # 3.time/space complexity of your solution?
- # time complexity O(n2) because of the nested loop, not sure
- # space complexity ?
+ # time complexity O(n2) because of the nested loop, Time complexity is O(n^2) because of sorting is O(n*log(n)), and the nesting for loop is O(n*n).
+
+ # space complexity: we didn't use extra space except triplets so it is O(1)
 
 # 4.What are some ways in which we could tweak / change my implementation to improve on its better time / space complexity?
  # Maybe to use Hash table

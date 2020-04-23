@@ -10,7 +10,7 @@ def balancedBrackets(string):
 
     # process each bracket of the string one at a time
     for i in string:
-        # if its alphabets,then it doesn't matter just continue
+        # If the character is not in the set of all brackets, we ignore it.
         if i not in brackets:
             continue
         # if we encounter an opening braket, we simply push it onto the stack and process it later
@@ -46,6 +46,8 @@ def balancedBrackets(string):
  # Space complexity : O(n) as we push all opening brackets onto the stack and in the worst case, we will end up pushing all the brackets onto the stack. e.g. ((((((((((.
 
 # 4.What are some ways in which we could tweak / change my implementation to improve on its better time / space complexity?
+# Move all the brackets, open_bra, and brackets_map out of the function. Make them constants to save space.
+
   # Hash map for keeping track of mappings. This keeps the code very clean.
   # Also makes adding more types of parenthesis easier
   # not sure what else can improve
