@@ -23,7 +23,7 @@ class Solution(object):
         # we mark the number that i points as negative.
         # Then we filter the list, get all the indexes
         # who points to a positive number
-        for i in xrange(len(nums)):
+        for i in range(len(nums)):
             index = abs(nums[i]) - 1
             nums[index] = - abs(nums[index])
 
