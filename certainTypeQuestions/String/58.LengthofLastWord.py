@@ -8,3 +8,7 @@
 
 # Input: "Hello World"
 # Output: 5
+
+
+def lengthOfLastWord(self, s):
+    return len(s.rstrip(' ').split(' ')[-1])
