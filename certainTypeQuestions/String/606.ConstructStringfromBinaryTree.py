@@ -37,3 +37,11 @@
 
 # Explanation: Almost the same as the first example,
 # except we can't omit the first parenthesis pair to break the one-to-one mapping relationship between the input and the output.
+
+
+def tree2str(self, t):
+    if not t:
+        return ''
+    left = '({})'.format(self.tree2str(t.left)) if (t.left or t.right) else ''
+    right = '({})'.format(self.tree2str(t.right)) if t.right else ''
+    return '{}{}{}'.format(t.val, left, right)
