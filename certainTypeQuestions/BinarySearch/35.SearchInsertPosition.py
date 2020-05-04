@@ -17,3 +17,12 @@
 # Input: [1,3,5,6], 5
 # Output: 2
 
+
+class Solution(object):
+    def searchInsert(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        return len([x for x in nums if x < target])
