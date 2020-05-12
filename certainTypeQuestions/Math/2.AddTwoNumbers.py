@@ -7,3 +7,48 @@
 # Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
 # Output: 7 -> 0 -> 8
 # Explanation: 342 + 465 = 807.
+Python supports arbitrarily large integers, so I can safely turn the two lists into ints, add them, and turn the sum into a list.
+
+
+class Solution:
+    def addTwoNumbers(self, l1, l2):
+        def toint(node):
+            return node.val + 10 * toint(node.next) if node else 0
+
+        def tolist(n):
+            node = ListNode(n % 10)
+            if n > 9:
+                node.next = tolist(n / 10)
+            return node
+        return tolist(toint(l1) + toint(l2))
+
+
+Iterative tolist instead of recursive:
+
+
+class Solution:
+    def addTwoNumbers(self, l1, l2):
+        def toint(node):
+            return node.val + 10 * toint(node.next) if node else 0
+        n = toint(l1) + toint(l2)
+        first = last = ListNode(n % 10)
+        while n > 9:
+            n /= 10
+            last.next = last = ListNode(n % 10)
+        return first
+
+
+And a very different solution that could sum arbitrarily many addends, not just two:
+
+
+class Solution:
+    def addTwoNumbers(self, l1, l2):
+        addends = l1, l2
+        dummy = end = ListNode(0)
+        carry = 0
+        while addends or carry:
+            carry += sum(a.val for a in addends)
+            addends = [a.next for a in addends if a.next]
+            end.next = end = ListNode(carry % 10)
+            carry /= 10
+        return dummy.next
