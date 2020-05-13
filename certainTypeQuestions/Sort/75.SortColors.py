@@ -14,3 +14,18 @@
 # A rather straight forward solution is a two-pass algorithm using counting sort.
 # First, iterate the array counting number of 0's, 1's, and 2's, then overwrite array with total number of 0's, then 1's and followed by 2's.
 # Could you come up with a one-pass algorithm using only constant space?
+
+
+def sortColors(self, nums):
+    red, white, blue = 0, 0, len(nums)-1
+
+    while white <= blue:
+        if nums[white] == 0:
+            nums[red], nums[white] = nums[white], nums[red]
+            white += 1
+            red += 1
+        elif nums[white] == 1:
+            white += 1
+        else:
+            nums[white], nums[blue] = nums[blue], nums[white]
+            blue -= 1
