@@ -7,3 +7,13 @@
 # Input: s = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT"
 
 # Output: ["AAAAACCCCC", "CCCCCAAAAA"]
+
+
+class Solution:
+    # @param s, a string
+    # @return a list of strings
+    def findRepeatedDnaSequences(self, s):
+        dictionary = dict()
+        for i in [s[x: x + 10] for x in range(len(s) - 9)]:
+            dictionary[i] = dictionary.get(i, 0) + 1
+        return [k for k, v in dictionary.iteritems() if v > 1]
