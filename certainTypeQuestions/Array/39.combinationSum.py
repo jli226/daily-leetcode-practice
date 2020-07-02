@@ -20,7 +20,7 @@ def dfs(self, nums, target, index, path, res):
     if target == 0:
         res.append(path)
         return
-    for i in xrange(index, len(nums)):
+    for i in range(index, len(nums)):
         if nums[i] > target:  # here
             break
         self.dfs(nums, target-nums[i], i, path+[nums[i]], res)
