@@ -14,3 +14,22 @@
 #   9  20
 #     /  \
 #    15   7
+
+class Solution:
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
+        if not preorder: return None
+        root = None
+        d_in = {num:i for i,num in enumerate(inorder)}
+        stack = []
+        for ele in preorder:
+            node = TreeNode(ele)
+            if not root: root = node
+            if stack:
+                if d_in[ele] < d_in[stack[-1].val] :
+                    stack[-1].left = node
+                else:
+                    while stack and d_in[ele] > d_in[stack[-1].val]:
+                        parent = stack.pop()
+                    parent.right = node
+            stack.append(node)
+        return root
