@@ -14,3 +14,24 @@
 #   9  20
 #     /  \
 #    15   7
+
+class Solution:
+    
+    def _helper(self, postorder: List[int], inorder_map: Dict[int, int], left: int, right: int) -> TreeNode:
+        if left == right:
+            return None
+        
+        root_val = postorder[self.head]
+        root = TreeNode(root_val)
+        
+        pivot = inorder_map[root_val]
+        self.head -= 1
+        
+        root.right = self._helper(postorder, inorder_map, pivot + 1, right)
+        root.left = self._helper(postorder, inorder_map, left, pivot)
+        return root
+    
+    def buildTree(self, inorder: List[int], postorder: List[int]) -> TreeNode:
+        self.head = len(postorder) - 1
+        inorder_map = {val : i for i, val in enumerate(inorder)}
+        return self._helper(postorder, inorder_map, 0, len(inorder))
