@@ -8,3 +8,15 @@
 
 # Input: [9,6,4,2,3,5,7,0,1]
 # Output: 8
+
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+	
+        res = 0
+        for num in range(len(nums) +1):
+            res += num
+        
+        for num in nums:
+            res -= num
+            
+        return res
