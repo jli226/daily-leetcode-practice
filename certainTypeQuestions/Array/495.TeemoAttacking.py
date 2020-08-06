@@ -2,3 +2,15 @@
 
 # You may assume that Teemo attacks at the very beginning of a specific time point, and makes Ashe be in poisoned condition immediately.
 
+class Solution:
+    def findPoisonedDuration(self, timeSeries: List[int], duration: int) -> int:
+        if len(timeSeries)==0:
+            return 0
+        res,i=duration,1
+        while i<len(timeSeries):
+            if timeSeries[i]-timeSeries[i-1]>=duration:
+                res+=duration
+            else:
+                res+=timeSeries[i]-timeSeries[i-1]
+            i+=1
+        return res
