@@ -7,3 +7,24 @@
 # Any live cell with more than three live neighbors dies, as if by over-population..
 # Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
 # Write a function to compute the next state (after one update) of the board given its current state. The next state is created by applying the above rules simultaneously to every cell in the current state, where births and deaths occur simultaneously.
+
+class Solution:
+    def gameOfLife(self, board: List[List[int]]) -> None:
+        """
+        Do not return anything, modify board in-place instead.
+        """
+        m, n = len(board), len(board[0])
+        
+        for i, j in product(range(m), range(n)):
+            #count live neighbors 
+            nbr = 0 
+            for ii, jj in product(range(i-1, i+2), range(j-1, j+2)):
+                if 0 <= ii < m and 0 <= jj < n and (ii != i or jj != j) and board[ii][jj] in (-1, 1): nbr += 1
+
+            if board[i][j] and (nbr < 2 or nbr > 3): board[i][j] = -1 # live to dead (overshoot)
+            elif not board[i][j] and nbr == 3: board[i][j] = 2 #dead to live (overshoot)
+        
+        #recode the table 
+        for i, j in product(range(m), range(n)):
+            board[i][j] = int(board[i][j] > 0) 
+                
