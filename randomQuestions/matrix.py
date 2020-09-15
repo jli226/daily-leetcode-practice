@@ -7,3 +7,16 @@
 #1 2 3
 #2 3 1
 #3 1 2
+
+def check_sub-sudoku(mat):
+     N = len(mat)
+     valid_set = set(range(1, N + 1))
+     for i in range (N):
+         row_set = set()
+         col_set = set()
+         for j in range (N):
+             col_set.add(mat[j][i])
+             row_set.add)mat[i][j])
+        if col_set != valid_set or row_set != valid_set:
+            return "INVALID"
+    return "VALID"
